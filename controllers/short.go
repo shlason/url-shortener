@@ -67,3 +67,16 @@ func CreateShortURL(c *gin.Context) {
 		},
 	})
 }
+
+func GetShortIDRediect(c *gin.Context) {
+	shortID := c.Param("shortID")
+	u := &models.URL{
+		ShortID: shortID,
+	}
+	result := u.ReadByShortID()
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		c.String(http.StatusBadRequest, "404 Not found.")
+		return
+	}
+	c.Redirect(http.StatusMovedPermanently, u.LongURL)
+}

@@ -17,10 +17,10 @@ jobs:
     #     go-version: 1.18
 
     - name: Setup Environment
-      run: docker build -t ubuntu_go . --no-cache
+      run: sudo docker build -t ubuntu_go . --no-cache
 
     - name: Run Docker
-      run: docker run -d -P ubuntu_go
+      run: sudo docker run -d -P ubuntu_go
 
     # - name: Build
     #   run: go build -v ./

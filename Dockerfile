@@ -24,4 +24,4 @@ COPY ./ ./
 EXPOSE 443
 
 RUN go build ./main.go
-RUN service mysql start && ./main
+RUN service mysql start && sudo ./main

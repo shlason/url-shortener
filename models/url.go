@@ -19,3 +19,7 @@ func (url *URL) Create() *gorm.DB {
 func (url *URL) ReadByLongURL() *gorm.DB {
 	return db.Where("long_url = ?", url.LongURL).First(&url)
 }
+
+func (url *URL) ReadByShortID() *gorm.DB {
+	return db.Where("short_id = ?", url.ShortID).First(&url)
+}

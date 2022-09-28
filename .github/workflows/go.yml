@@ -11,13 +11,19 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.18
+    # - name: Set up Go
+    #   uses: actions/setup-go@v3
+    #   with:
+    #     go-version: 1.18
 
-    - name: Build
-      run: go build -v ./
+    - name: Setup Environment
+      run: docker build -t ubuntu_go . --no-cache
 
-    - name: Test
-      run: go test -v ./
+    - name: Run Docker
+      run: docker run -d -P ubuntu_go
+
+    # - name: Build
+    #   run: go build -v ./
+
+    # - name: Test
+    #   run: go test -v ./

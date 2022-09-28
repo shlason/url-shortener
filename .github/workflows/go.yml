@@ -23,7 +23,7 @@ jobs:
       run: sudo docker build -t ubuntu_go . --no-cache
 
     - name: Run Docker
-      run: sudo docker run -d -P ubuntu_go
+      run: sudo docker run -d -P --network="host" ubuntu_go
 
     # - name: Build
     #   run: go build -v ./

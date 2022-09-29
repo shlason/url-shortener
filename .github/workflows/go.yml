@@ -33,4 +33,4 @@ jobs:
     needs: build
     steps:
     - name: Launch Server
-      run: sudo ./url-shortener
+      run: sudo ./deploy.sh

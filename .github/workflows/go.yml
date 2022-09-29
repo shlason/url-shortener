@@ -33,4 +33,6 @@ jobs:
     needs: build
     steps:
     - name: Launch Server
-      run: sudo ./deploy.sh
+      run:
+        chmod +x demo.sh
+        ./deploy.sh

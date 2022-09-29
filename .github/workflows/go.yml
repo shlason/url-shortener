@@ -35,4 +35,4 @@ jobs:
     - name: Launch Server
       run:
         chmod +x deploy.sh
-        ./deploy.sh
+        sudo ./deploy.sh

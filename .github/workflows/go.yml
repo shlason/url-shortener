@@ -16,17 +16,17 @@ jobs:
     #   with:
     #     go-version: 1.18
 
-    - name: Clear Enviromment
-      run: sudo docker system prune -a -f
+    # - name: Clear Enviromment
+    #   run: sudo docker system prune -a -f
 
-    - name: Setup Environment
-      run: sudo docker build -t ubuntu_go . --no-cache
+    # - name: Setup Environment
+    #   run: sudo docker build -t ubuntu_go . --no-cache
 
-    - name: Run Docker
-      run: sudo docker run -d -P --network="host" ubuntu_go
+    # - name: Run Docker
+    #   run: sudo docker run -d -P --network="host" ubuntu_go
 
-    # - name: Build
-    #   run: go build -v ./
+    - name: Build
+      run: go build -v ./
 
     # - name: Test
     #   run: go test -v ./

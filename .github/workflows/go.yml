@@ -11,13 +11,26 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.18
+    # - name: Set up Go
+    #   uses: actions/setup-go@v3
+    #   with:
+    #     go-version: 1.18
+
+    # - name: Clear Enviromment
+    #   run: sudo docker system prune -a -f
+
+    # - name: Setup Environment
+    #   run: sudo docker build -t ubuntu_go . --no-cache
+
+    # - name: Run Docker
+    #   run: sudo docker run -d -P --network="host" ubuntu_go
 
     - name: Build
-      run: go build -v ./
-
-    - name: Test
-      run: go test -v ./
+      run: go build -o ./url-shortener main.go
+  
+  deploy:
+    runs-on: self-hosted
+    needs: build
+    steps:
+    - name: Launch Server
+      run: sudo supervisorctl reload

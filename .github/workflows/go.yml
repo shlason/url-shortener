@@ -26,7 +26,7 @@ jobs:
     #   run: sudo docker run -d -P --network="host" ubuntu_go
 
     - name: Build
-      run: go build -v ./
+      run: go build -o ./url-shortener main.go
   
   deploy:
     runs-on: self-hosted

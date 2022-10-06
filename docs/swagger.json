@@ -16,5 +16,75 @@
     },
     "host": "short.sidesideeffect.io",
     "basePath": "/api",
-    "paths": {}
+    "paths": {
+        "/short": {
+            "post": {
+                "description": "藉由 timestamp 轉 base62 的方式產生 unique ID 來作為短網址的 ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "short"
+                ],
+                "summary": "建立短網址",
+                "parameters": [
+                    {
+                        "description": "Original URL",
+                        "name": "url",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controllers.createShortURLResponsePayload"
+                        }
+                    }
+                }
+            }
+        },
+        "/{shortID}": {
+            "get": {
+                "description": "Use 301 redirect by short ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "short"
+                ],
+                "summary": "Redirect by short ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "shortID redirect use",
+                        "name": "shortID",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "controllers.createShortURLResponsePayload": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "string"
+                }
+            }
+        }
+    }
 }

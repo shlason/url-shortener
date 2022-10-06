@@ -1,4 +1,10 @@
 basePath: /api
+definitions:
+  controllers.createShortURLResponsePayload:
+    properties:
+      url:
+        type: string
+    type: object
 host: short.sidesideeffect.io
 info:
   contact:
@@ -11,5 +17,44 @@ info:
     url: https://github.com/shlason/url-shortener/blob/main/LICENSE
   title: URL-Shortener Example API
   version: "1.0"
-paths: {}
+paths:
+  /{shortID}:
+    get:
+      consumes:
+      - application/json
+      description: Use 301 redirect by short ID
+      parameters:
+      - description: shortID redirect use
+        in: query
+        name: shortID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: Redirect by short ID
+      tags:
+      - short
+  /short:
+    post:
+      consumes:
+      - application/json
+      description: 藉由 timestamp 轉 base62 的方式產生 unique ID 來作為短網址的 ID
+      parameters:
+      - description: Original URL
+        in: body
+        name: url
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.createShortURLResponsePayload'
+      summary: 建立短網址
+      tags:
+      - short
 swagger: "2.0"

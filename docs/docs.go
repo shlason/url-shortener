@@ -88,7 +88,7 @@ const docTemplate = `{
         "controllers.createShortURLResponsePayload": {
             "type": "object",
             "properties": {
-                "url": {
+                "shortId": {
                     "type": "string"
                 }
             }

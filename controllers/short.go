@@ -17,7 +17,7 @@ type createShortURLRequestPayload struct {
 }
 
 type createShortURLResponsePayload struct {
-	URL string `json:"url"`
+	ShortID string `json:"shortId"`
 }
 
 // CreatShortURL godoc
@@ -55,7 +55,7 @@ func CreateShortURL(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message": "success",
 			"data": createShortURLResponsePayload{
-				URL: u.ShortID,
+				ShortID: u.ShortID,
 			},
 		})
 		return
@@ -72,7 +72,7 @@ func CreateShortURL(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "success",
 		"data": createShortURLResponsePayload{
-			URL: u.ShortID,
+			ShortID: u.ShortID,
 		},
 	})
 }

@@ -25,7 +25,7 @@ paths:
       description: Use 301 redirect by short ID
       parameters:
       - description: shortID redirect use
-        in: query
+        in: path
         name: shortID
         required: true
         type: string

@@ -76,7 +76,7 @@ const docTemplate = `{
                         "type": "string",
                         "description": "shortID redirect use",
                         "name": "shortID",
-                        "in": "query",
+                        "in": "path",
                         "required": true
                     }
                 ],

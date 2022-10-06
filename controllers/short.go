@@ -83,7 +83,7 @@ func CreateShortURL(c *gin.Context) {
 // @Tags         short
 // @Accept       json
 // @Produce      json
-// @Param        shortID    query    string  true  "shortID redirect use"
+// @Param        shortID    path    string  true  "shortID redirect use"
 // @Router       /{shortID} [get]
 func GetShortIDRediect(c *gin.Context) {
 	shortID := c.Param("shortID")

@@ -2,11 +2,13 @@ package controllers
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 	"net/url"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/shlason/url-shortener/configs"
 	"github.com/shlason/url-shortener/models"
 	"github.com/shlason/url-shortener/utils"
 	"gorm.io/gorm"
@@ -94,7 +96,7 @@ func GetShortIDRediect(c *gin.Context) {
 
 	if result.Error != nil {
 		if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-			c.String(http.StatusBadRequest, "404 Not found.")
+			c.Redirect(http.StatusMovedPermanently, fmt.Sprintf("https://%s/notfound", configs.Server.Host))
 			return
 		}
 		c.JSON(http.StatusInternalServerError, gin.H{

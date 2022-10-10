@@ -33,12 +33,12 @@ func main() {
 	var g errgroup.Group
 
 	r := gin.Default()
-
-	r.Use(cors.New(cors.Config{
-		AllowOrigins: []string{"https://*.short.sidesideeffect.io"},
-		AllowMethods: []string{"GET", "POST", "OPTIONS"},
-		AllowHeaders: []string{"Origin"},
-	}))
+	r.Use(cors.Default())
+	// r.Use(cors.New(cors.Config{
+	// 	AllowOrigins: []string{"https://*.short.sidesideeffect.io"},
+	// 	AllowMethods: []string{"GET", "POST", "OPTIONS"},
+	// 	AllowHeaders: []string{"Origin"},
+	// }))
 
 	apiRoute := r.Group("/api")
 

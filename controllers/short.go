@@ -20,6 +20,15 @@ type createShortURLResponsePayload struct {
 	URL string `json:"url"`
 }
 
+// CreatShortURL godoc
+// @Summary      建立短網址
+// @Description  藉由 timestamp 轉 base62 的方式產生 unique ID 來作為短網址的 ID
+// @Tags         short
+// @Accept       json
+// @Produce      json
+// @Param        url   body      string  true  "Original URL"
+// @Success      200  {object}  createShortURLResponsePayload
+// @Router       /short [post]
 func CreateShortURL(c *gin.Context) {
 	var r createShortURLRequestPayload
 	err := c.BindJSON(&r)
@@ -68,15 +77,31 @@ func CreateShortURL(c *gin.Context) {
 	})
 }
 
+// GetShortIDRediect godoc
+// @Summary      Redirect by short ID
+// @Description  Use 301 redirect by short ID
+// @Tags         short
+// @Accept       json
+// @Produce      json
+// @Param        shortID    path    string  true  "shortID redirect use"
+// @Router       /{shortID} [get]
 func GetShortIDRediect(c *gin.Context) {
 	shortID := c.Param("shortID")
 	u := &models.URL{
 		ShortID: shortID,
 	}
 	result := u.ReadByShortID()
-	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		c.String(http.StatusBadRequest, "404 Not found.")
+
+	if result.Error != nil {
+		if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+			c.String(http.StatusBadRequest, "404 Not found.")
+			return
+		}
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": result.Error,
+		})
 		return
 	}
+
 	c.Redirect(http.StatusMovedPermanently, u.LongURL)
 }

@@ -8,8 +8,9 @@ import (
 )
 
 type server struct {
-	Host string
-	Port string
+	Host      string
+	Port      string
+	FeWrokDir string
 }
 
 type database struct {
@@ -33,8 +34,9 @@ func init() {
 	}
 
 	Server = server{
-		Host: cfg.Section("server").Key("host").String(),
-		Port: cfg.Section("server").Key("port").String(),
+		Host:      cfg.Section("server").Key("host").String(),
+		Port:      cfg.Section("server").Key("port").String(),
+		FeWrokDir: cfg.Section("server").Key("feWorkDir").String(),
 	}
 	Database = database{
 		Dialect:  cfg.Section("database").Key("dialect").String(),

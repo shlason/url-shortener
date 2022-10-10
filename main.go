@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/shlason/url-shortener/configs"
 	"github.com/shlason/url-shortener/docs"
@@ -32,6 +33,12 @@ func main() {
 	var g errgroup.Group
 
 	r := gin.Default()
+	r.Use(cors.Default())
+	// r.Use(cors.New(cors.Config{
+	// 	AllowOrigins: []string{"https://*.short.sidesideeffect.io"},
+	// 	AllowMethods: []string{"GET", "POST", "OPTIONS"},
+	// 	AllowHeaders: []string{"Origin"},
+	// }))
 
 	apiRoute := r.Group("/api")
 

@@ -21,8 +21,11 @@ func init() {
 		configs.Database.Options,
 	)
 	d, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+
 	if err != nil {
 		panic(err)
 	}
+
+	db.AutoMigrate(&URL{})
 	db = d
 }

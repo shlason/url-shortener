@@ -3,6 +3,7 @@
 一個短網址服務，主要是用來練習看看 Gin 和 GORM 的練習項目。
 
 API 文件：[點我](https://short.sidesideeffect.io/swagger/index.html)
+
 線上 Demo: [點我](https://short.sidesideeffect.io)
 
 ![url-shortener demo image](https://raw.githubusercontent.com/shlason/url-shortener/docs/images/demo.png)

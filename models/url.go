@@ -8,10 +8,6 @@ type URL struct {
 	LongURL string
 }
 
-func init() {
-	db.AutoMigrate(&URL{})
-}
-
 func (url *URL) Create() *gorm.DB {
 	return db.Create(&url)
 }

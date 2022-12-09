@@ -26,6 +26,7 @@ func init() {
 		panic(err)
 	}
 
-	db.AutoMigrate(&URL{})
+	// db.AutoMigrate(&URL{})
+
 	db = d
 }
